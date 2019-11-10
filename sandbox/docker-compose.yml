@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:
+  sandbox:
+    image: anoriqq/sandbox
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - type: bind
+        source: ../
+        target: /home/sandbox/workspace
+      # For Windows ↓
+      - type: bind
+        source: /c/Users/shota/AppData/Local/mkcert
+        target: /home/sandbox/.local/share/mkcert
+    command: ./sandbox/scripts/create-cert.sh
